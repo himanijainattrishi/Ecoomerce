@@ -1,8 +1,11 @@
 package com;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,10 +30,18 @@ public class admin {
 		  return "admin";
 	  }
 	@RequestMapping(value= "/admin/add")
-  public String addProduct(@ModelAttribute("product") Product p){
-       System.out.println("add product");
-      if(p.getId() == 0){
-      	System.out.println("product value add is" +p.getId());
+  public String addProduct(@Valid @ModelAttribute("product") Product p,BindingResult result,Model model){
+       
+       if(result.hasErrors())
+       {  
+    	   model.addAttribute("listProducts",service.listproduct());
+       
+    	   return "admin";
+       }
+       else
+       {
+       if(p.getId() == 0){
+      
           //new person, add it
           service.addProduct(p);
       }else{
@@ -40,7 +51,7 @@ public class admin {
       }
        
       return "redirect:/admin";
-       
+       }
   }
 	@RequestMapping("/admin")
 	  public String  listProduct(Model model)

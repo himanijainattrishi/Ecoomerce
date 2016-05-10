@@ -1,12 +1,10 @@
-
-
-
- 
-
-
-
-
-
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ page session="false" %>
+<%@page isELIgnored="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -27,100 +25,100 @@
 
     Add a Product
 </h1>
-
-<form id="product" action="/Ecommerce/admin/add" method="post">
+<c:url var="addAction" value="/admin/add" ></c:url>
+<form:form action="${addAction}" commandName="product" modelAttribute="product">
 <table>
-    
+    <c:if test="${!empty product.name}">
+    <tr>
+        <td>
+            <form:label path="id">
+                <spring:message text="ID"/>
+            </form:label>
+        </td>
+        <td>
+            <form:input path="id" readonly="true" size="8"  disabled="true" />
+            <form:hidden path="id" />
+        </td> 
+    </tr>
+    </c:if>
      <tr>
         <td>
-            <label for="name">
-                Name
-            </label>
+            <form:label path="name">
+                <spring:message text="Name"/>
+            </form:label>
         </td>
         <td>
-            <input id="name" name="name" type="text" value=""/>
+            <form:input path="name" /><form:errors path="name" cssStyle="color:#00ff00;"/>
         </td> 
     </tr>
     <tr>
         <td>
-            <label for="brand">
-                brand
-            </label>
+            <form:label path="brand">
+                <spring:message text="brand"/>
+            </form:label>
         </td>
         <td>
-            <input id="brand" name="brand" type="text" value=""/>
+            <form:input path="brand" />
         </td> 
     </tr>
     <tr>
         <td>
-            <label for="price">
-                price
-            </label>
+            <form:label path="price">
+                <spring:message text="price"/>
+            </form:label>
         </td>
         <td>
-            <input id="price" name="price" type="text" value="0"/>
+            <form:input path="price" />
         </td>
     </tr>
    
- 
+ <%--   </tr>--%>
      <tr>
         <td>
-            <label for="color">
-                color
-            </label>
+            <form:label path="color">
+                <spring:message text="color"/>
+            </form:label>
         </td>
         <td>
-            <input id="color" name="color" type="text" value=""/>
+            <form:input path="color" />
         </td>
     </tr>
-    
-     <tr>
-        <td>
-            <label for="categ">
-                categ
-            </label>
-        </td>
-        <td>
-            <input id="categ" name="categ" type="text" value=""/>
-        </td>
-    </tr>
-    
-    
-    
-    
     
     <tr>
         <td>
-            <label for="desc">
-                desc
-            </label>
+            <form:label path="desc">
+                <spring:message text="desc"/>
+            </form:label>
         </td>
         <td>
-            <input id="desc" name="desc" type="text" value=""/>
+            <form:input path="desc" />
         </td>
     </tr>
     
     
      
        
- 
+ <%--   </tr>--%>
     <tr>
         <td colspan="2">
-            
-            
+            <c:if test="${!empty product.name}">
                 <input type="submit"
-                    value="Add Product" />
-         
+                    value="<spring:message text="Edit Product"/>" />
+            </c:if>
+            <c:if test="${empty product.name}">
+                <input type="submit"
+                    value="<spring:message text="Add Product"/>" />
+         </c:if>
         </td>
     </tr>
     
 </table>  
-</form>
+</form:form>
 <br>
 <h3>Product List</h3>
 
 
- 
+<c:if test="${!empty listproducts}"> 
 
     <table class="tg">
     <tr>
@@ -132,68 +130,29 @@
        <th width="120">Name</th>
         <th width="120">Price</th>
       <th width="120">color</th>
-       <th width="120">Category</th>
         <th width="120">Desc</th>
         <th width="60">edit</th>
         <th width="60">Delete</th>
     </tr>
-    
+    <c:forEach items="${listproducts}" var="product">
         <tr>
-            <td>38</td>
+            <td>${product.id}</td>
           
            
          
-            <td>colorbar</td>
-                 <td>eyelinear</td>
-              <td>800</td>
-             <td>black</td>
-             
-              <td>eye</td>
-              <td>good</td>
+            <td>${product.brand}</td>
+                 <td>${product.name}</td>
+              <td>${product.price}</td>
+             <td>${product.color}</td>
+             <td>${product.desc}</td>
             
-            <td><a href="/Ecommerce/edit/38" >Edit</a></td>
-            <td><a href="/Ecommerce/remove/38" >Delete</a></td>
+            <td><a href="<c:url value='/edit/${product.id}'/>" >Edit</a></td>
+            <td><a href="<c:url value='/remove/${product.id}'/>" >Delete</a></td>
             
         </tr>
-    
-        <tr>
-            <td>39</td>
-          
-           
-         
-            <td>lakme</td>
-                 <td>lipstick</td>
-              <td>900</td>
-             <td>red</td>
-             
-              <td>lips</td>
-              <td>chip</td>
-            
-            <td><a href="/Ecommerce/edit/39" >Edit</a></td>
-            <td><a href="/Ecommerce/remove/39" >Delete</a></td>
-            
-        </tr>
-    
-        <tr>
-            <td>40</td>
-          
-           
-         
-            <td>lakme</td>
-                 <td>sunlotion</td>
-              <td>1000</td>
-             <td>skin</td>
-             
-              <td>face</td>
-              <td>good</td>
-            
-            <td><a href="/Ecommerce/edit/40" >Edit</a></td>
-            <td><a href="/Ecommerce/remove/40" >Delete</a></td>
-            
-        </tr>
-    
+    </c:forEach>
     </table>
-   
+ </c:if>  
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
  <script src="resource/bootstrap/js/bootstrap.min.js"></script>
 </body>
