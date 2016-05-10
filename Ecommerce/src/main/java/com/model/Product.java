@@ -14,7 +14,7 @@ public class Product {
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	@NotEmpty(message="name can not be blank")
+	@NotEmpty(message="name values can not be blank")
 	private String name;
 	private String brand;
 	private int price;

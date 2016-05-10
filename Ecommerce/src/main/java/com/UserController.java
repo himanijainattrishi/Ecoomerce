@@ -35,6 +35,13 @@ public class UserController {
 		  ModelAndView model=new ModelAndView("index");
 		  return model;
 	  }
+	 @RequestMapping("/login")
+	  public ModelAndView login()
+	  {
+		 
+		  ModelAndView model=new ModelAndView("login");
+		  return model;
+	  }
 	
 	@RequestMapping("/product")
 	  public ModelAndView product()
@@ -69,13 +76,7 @@ public class UserController {
 		
 		  return model;
 	  }
-	@RequestMapping("/login")
-	  public ModelAndView login()
-	  {
-		  
-		  ModelAndView model=new ModelAndView("login");
-		  return model;
-	  }
+	
 	
 	@RequestMapping("/face")
 	  public ModelAndView face()

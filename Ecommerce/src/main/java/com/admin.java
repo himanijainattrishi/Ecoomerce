@@ -35,24 +35,23 @@ public class admin {
        if(result.hasErrors())
        {  
     	   model.addAttribute("listProducts",service.listproduct());
-       
+    	   System.out.println("validator");
     	   return "admin";
        }
        else
        {
-       if(p.getId() == 0){
-      
-          //new person, add it
+       if(p.getId() == 0)
+       	{          //new person, add it
           service.addProduct(p);
-      }else{
+        }
+       	else{
       	System.out.println("product value update is" +p.getId());
           //existing person, call update
           service.updateProduct(p);
-      }
-       
+       	}
       return "redirect:/admin";
        }
-  }
+	}
 	@RequestMapping("/admin")
 	  public String  listProduct(Model model)
 	  { 
