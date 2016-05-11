@@ -4,19 +4,33 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.dao.productimp;
 import com.model.Product;
 
 
-@Service("service")
+@Service
+@Transactional
 public class productservice {
-	@Autowired
+	
 	productimp p;
-	public productservice()
-	{
-		p=new productimp();
+	public void setP(productimp p) {
+		this.p = p;
 	}
+
+
+
+
+
+	@Autowired
+	public productservice(productimp p) {
+	
+		this.p = p;
+	}
+
+
+	
 	
 	
 	public List<Product> listproduct()
@@ -39,7 +53,9 @@ public class productservice {
     }
 	public void removeproduct(int id)
 	{
+		System.out.println("remove service start");
 		this.p.removeproduct(id);
+		System.out.println("remove service end");
 	}
 	
 	

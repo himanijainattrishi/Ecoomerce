@@ -1,5 +1,15 @@
 package com;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.OutputStream;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +19,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.model.Product;
 import com.service.productservice;
@@ -30,19 +41,41 @@ public class admin {
 		  return "admin";
 	  }
 	@RequestMapping(value= "/admin/add")
-  public String addProduct(@Valid @ModelAttribute("product") Product p,BindingResult result,Model model){
-       
+  public String addProduct(@Valid @ModelAttribute("product") Product p,BindingResult result,Model model,HttpServletRequest request){
+       HttpSession s=request.getSession();
        if(result.hasErrors())
        {  
     	   model.addAttribute("listProducts",service.listproduct());
     	   System.out.println("validator");
-    	   return "admin";
-       }
+    	   return "admin"; }
        else
        {
        if(p.getId() == 0)
-       	{          //new person, add it
-          service.addProduct(p);
+       	{   service.addProduct(p);
+       	System.out.println(s);
+       MultipartFile file=p.getImage();
+       String originalfile=file.getOriginalFilename();
+       	String fileloc=s.getServletContext().getRealPath("/resource/");
+       	System.out.println(fileloc);
+      String filename=fileloc+"\\"+p.getId()+".jpg";
+      System.out.println(filename);
+      byte b[]=originalfile.getBytes();
+      try{
+     FileOutputStream fos=new FileOutputStream(filename);
+     fos.write(b);
+		fos.close();
+		System.out.println(filename);
+		
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	   catch (Exception e) {
+   			// TODO Auto-generated catch block
+   			e.printStackTrace();
+   		}
+    	   
+    	
         }
        	else{
       	System.out.println("product value update is" +p.getId());
@@ -57,7 +90,7 @@ public class admin {
 	  { 
 		System.out.println("listproduct");
 		   model.addAttribute("product", new Product());
-		   System.out.println(service.listproduct());
+		 //  System.out.println(service.listproduct());
 	        model.addAttribute("listproducts", service.listproduct());
 	     
 	        return "admin";
@@ -68,7 +101,7 @@ public class admin {
 	 @RequestMapping("/remove/{id}")
 	   public String removeProduct(@PathVariable("id") int id){
 	        
-	     this.service.removeproduct(id);
+	     service.removeproduct(id);
 	     System.out.println("id remove is"+id);
 	       return "redirect:/admin";
 	   }

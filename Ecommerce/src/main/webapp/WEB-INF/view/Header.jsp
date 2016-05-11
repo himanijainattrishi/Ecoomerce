@@ -119,7 +119,7 @@ img {
 
 <ul class="nav navbar-nav navbar-right">
 <li class="active"><a href="#">HOME</a></li>
-<li><a href="#">CONTACT US</a></li> 
+<li><a href="contact">CONTACT US</a></li> 
 <li><a href="register">Sign Up</a></li> 
 <li><a href="login">Sign In</a></li> 		    
 		    <li class="dropdown">

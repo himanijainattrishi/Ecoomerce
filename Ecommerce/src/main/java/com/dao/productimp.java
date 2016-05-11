@@ -10,14 +10,30 @@ import org.hibernate.Transaction;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.model.Product;
-@Repository("p")
+@Repository
+
 public class productimp implements productdao{
 
-	@Autowired
+	
 	public SessionFactory sessionFactory; 
-	Transaction tx=null;
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+	
+	
+	
+	@Autowired
+	public productimp(SessionFactory sessionFactory) {
+		super();
+		this.sessionFactory = sessionFactory;
+	}
+
+
+
+
 	List<Product> product;
 	
 	public productimp()
@@ -34,7 +50,7 @@ public class productimp implements productdao{
 	{
 		Session session=getSession();
 		
-	     tx = session.beginTransaction();
+	    // tx = session.beginTransaction();
 	     String hql = "FROM Product";
 	     Query query =session.createQuery(hql);
 	     product=(List<Product>)query.list();
@@ -59,35 +75,38 @@ public class productimp implements productdao{
 	}*/
 	public void updateProduct(Product p) {
 		
-		Session session=getSession();
 		
+		Session session=sessionFactory.getCurrentSession();
 		session.update(p);
 		
 	}
 	public Product getProductById(int id)
 	{
-		Session session=getSession();
-		 
-		Product p=(Product)session.load(Product.class,new Integer(id));
+		
+		Session session=sessionFactory.getCurrentSession();
+		Product p=(Product)session.get(Product.class,new Integer(id));
 		System.out.println(p);
 		return p;
 		
 	}
 	public void addProduct(Product p) {
 		
-		Session session=getSession();
+		Session session=sessionFactory.getCurrentSession();
 		session.save(p);
 		
 	}
 	public void removeproduct(int productId) {
-		Session session=getSession();
-		 
+		Session session=sessionFactory.getCurrentSession();
+	
 		// tx = session.beginTransaction();
-		 Product p=(Product)session.load(Product.class,new Integer(productId));
-		 if(p!=null)
-		 {
-			 session.delete(p);
-		 }
+		 Product p=(Product)session.get(Product.class,new Integer(productId));
+		 System.out.print("remove dao start");
+		 System.out.println("");
+		 System.out.println("");
+		 System.out.println(productId);
+		 session.delete(p);
+	
+		 
 	
 		
 	}

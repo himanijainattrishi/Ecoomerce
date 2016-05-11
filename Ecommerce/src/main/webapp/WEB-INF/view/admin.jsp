@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%-- <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
@@ -17,18 +17,23 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
-<body>
+<body>--%>
+<%@include file="Header.jsp" %>
 
-
+<div class="container">
+<div class="row">
+<div class="col-sm-4"></div>
+<div class="col-sm-8">
 
 <h1>
 
     Add a Product
 </h1>
 <c:url var="addAction" value="/admin/add" ></c:url>
-<form:form action="${addAction}" commandName="product" modelAttribute="product">
+<form:form action="${addAction}" commandName="product" modelAttribute="product" enctype="multipart/form-data" method="post">
 <table>
     <c:if test="${!empty product.name}">
+    
     <tr>
         <td>
             <form:label path="id">
@@ -93,7 +98,20 @@
         <td>
             <form:input path="desc" />
         </td>
+        
     </tr>
+     <tr>
+        <td>
+            <form:label path="image">
+                <spring:message text="Photo to upload"/>
+            </form:label>
+        </td>
+        <td>
+            <form:input type="file" path="image" />
+        </td>
+        
+    </tr>
+    
     
     
      
@@ -119,8 +137,10 @@
 
 
 <c:if test="${!empty listproducts}"> 
-
-    <table class="tg">
+<div class="table-responsive"> 
+    <table class="table table-bordered">
+   <%--  <table class="tg">--%>
+    <thead>
     <tr>
         <th width="80">ID</th>
        
@@ -134,7 +154,9 @@
         <th width="60">edit</th>
         <th width="60">Delete</th>
     </tr>
+    </thead>
     <c:forEach items="${listproducts}" var="product">
+    <tbody>
         <tr>
             <td>${product.id}</td>
           
@@ -150,10 +172,14 @@
             <td><a href="<c:url value='/remove/${product.id}'/>" >Delete</a></td>
             
         </tr>
+        </tbody>
     </c:forEach>
     </table>
  </c:if>  
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+ </div>
+ 
+ </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
  <script src="resource/bootstrap/js/bootstrap.min.js"></script>
 </body>
 

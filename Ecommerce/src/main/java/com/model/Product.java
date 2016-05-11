@@ -5,8 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 public class Product {
@@ -21,8 +23,16 @@ public class Product {
 	private String color;
 	private String desc;
 	private String categ;
+	@Transient
+	private MultipartFile image;
 	public String getCateg() {
 		return categ;
+	}
+	public MultipartFile getImage() {
+		return image;
+	}
+	public void setImage(MultipartFile image) {
+		this.image = image;
 	}
 	public void setCateg(String categ) {
 		this.categ = categ;

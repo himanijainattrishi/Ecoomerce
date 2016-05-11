@@ -35,6 +35,13 @@ public class UserController {
 		  ModelAndView model=new ModelAndView("index");
 		  return model;
 	  }
+	 @RequestMapping("/contact")
+	  public ModelAndView contact()
+	  {
+		 
+		  ModelAndView model=new ModelAndView("contact");
+		  return model;
+	  }
 	 @RequestMapping("/login")
 	  public ModelAndView login()
 	  {
