@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,11 +13,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.model.Product;
+
 import com.service.productservice;
 import java.util.Iterator;
 
 
-
+@Component
 @Controller
 public class UserController {
 	@Autowired
@@ -35,13 +37,7 @@ public class UserController {
 		  ModelAndView model=new ModelAndView("index");
 		  return model;
 	  }
-	 @RequestMapping("/contact")
-	  public ModelAndView contact()
-	  {
-		 
-		  ModelAndView model=new ModelAndView("contact");
-		  return model;
-	  }
+	
 	 @RequestMapping("/login")
 	  public ModelAndView login()
 	  {
@@ -66,15 +62,25 @@ public class UserController {
 		     model.addObject("access",json);
 		     return model; 
 	  }
-	
-	@RequestMapping("/productdetails1")
+	public Product initFlow(){
+		return product;
+	}
+	@RequestMapping("/order")
+	 
+    public String Order() {
+          return "redirect:/memberShip";
+    }
+	Product product;
+	@RequestMapping("/Product/productDetails")
 	  public ModelAndView productdetails1(@ModelAttribute("product") Product product)
 	  {
-		  
-		  ModelAndView model=new ModelAndView("productdetails1");
+		  this.product=product;
+		  ModelAndView model=new ModelAndView("productDetails");
 		
 		  return model;
 	  }
+	
+	
 	@RequestMapping("/page1")
 	  public ModelAndView page1()
 	  {
@@ -96,7 +102,7 @@ public class UserController {
 	public ModelAndView Product_Method2(@PathVariable("pname") String name)
 	{
 	              
-	               List<Product> filteredlist=new ArrayList<Product>();
+	               List<Product> retrive=new ArrayList<Product>();
 	               //ProductService service=new ProductService();
 	              
 	               List<Product> list= service.listproduct();
@@ -109,15 +115,16 @@ public class UserController {
 	                              {
 	                            	  System.out.println("category is" +p.getCateg());
 	                            	  System.out.println("name" +name);
-	                                             filteredlist.add(p);
+	                            	  retrive.add(p);
 	                              }
 	                             
 	               }
-	               String json = new Gson().toJson(filteredlist );
+	               String json = new Gson().toJson(retrive);
 	               System.out.println(json);
 	               
 	               ModelAndView mv=new ModelAndView("product");
 	               mv.addObject("access",json);
+	               
 	              
 	               return mv;
 	

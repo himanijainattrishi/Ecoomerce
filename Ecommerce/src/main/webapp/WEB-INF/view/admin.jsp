@@ -89,10 +89,22 @@
         </td>
     </tr>
     
+    
+     <tr>
+        <td>
+            <form:label path="categ">
+                <spring:message text="Category"/>
+            </form:label>
+        </td>
+        <td>
+            <form:input path="categ" />
+        </td>
+    </tr>
+    
     <tr>
         <td>
             <form:label path="desc">
-                <spring:message text="desc"/>
+                <spring:message text="Description"/>
             </form:label>
         </td>
         <td>
@@ -143,16 +155,14 @@
     <thead>
     <tr>
         <th width="80">ID</th>
-       
-       
-      
-       <th width="120">Brand</th>
-       <th width="120">Name</th>
-        <th width="120">Price</th>
-      <th width="120">color</th>
-        <th width="120">Desc</th>
-        <th width="60">edit</th>
-        <th width="60">Delete</th>
+         <th width="120">Name</th>
+         <th width="120">Brand</th>
+          <th width="120">color</th>
+           <th width="120">Price</th>
+    <th width="120">Category</th>
+          <th width="120">Desc</th>
+        <th width="120">Edit</th>
+         <th width="120">Delete</th>
     </tr>
     </thead>
     <c:forEach items="${listproducts}" var="product">
@@ -161,12 +171,14 @@
             <td>${product.id}</td>
           
            
-         
+          <td>${product.name}</td>
             <td>${product.brand}</td>
-                 <td>${product.name}</td>
+                 <td>${product.color}</td>
               <td>${product.price}</td>
-             <td>${product.color}</td>
+            
+             <td>${product.categ}</td>
              <td>${product.desc}</td>
+              
             
             <td><a href="<c:url value='/edit/${product.id}'/>" >Edit</a></td>
             <td><a href="<c:url value='/remove/${product.id}'/>" >Delete</a></td>

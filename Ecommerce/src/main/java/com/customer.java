@@ -17,16 +17,17 @@ import com.service.productservice;
 public class customer 
 {
 	@Autowired
-	  customerservice service;
+	  customerservice service1;
 
 	
 @RequestMapping(value= "/register")
- public void registerPage(Model m)
+ public String registerPage(Model m)
 	{
 	
 		User u=new User();
 	ModelAndView model=new ModelAndView("register");
 		m.addAttribute("user", u);
+		return "register";
 	}
 
 
@@ -34,10 +35,20 @@ public class customer
 public String addCustomer(@ModelAttribute("user") User u)
 	{
 	System.out.println("in controller");
-    service.adduser(u);
-	return "redirect:/index";
+    service1.adduser(u);
+	return "redirect:/register";
 		
 	
 	}
+@RequestMapping(value= "/userlogin")
+public String userlogin(Model m)
+	{
+	
+		User u=new User();
+	ModelAndView model=new ModelAndView("userlogin");
+		m.addAttribute("user", u);
+		return "register";
+	}
+
 
 }

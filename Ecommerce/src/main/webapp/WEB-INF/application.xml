@@ -35,13 +35,17 @@
  <bean id="p" class="com.dao.productimp">
  <property name="sessionFactory" ref="sessionFactory"></property>
  </bean>
- 
+ <bean id="c" class="com.dao.customerimp">
+ <property name="sessionFactory" ref="sessionFactory"></property>
+ </bean>
  
  
  <bean id="service" class="com.service.productservice">
  <property name="p" ref="p"></property>
  </bean>
- 
+ <bean id="service1" class="com.service.customerservice">
+ <property name="c" ref="c"></property>
+ </bean>
  
 <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />

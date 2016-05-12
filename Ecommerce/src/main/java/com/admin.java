@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.model.Product;
+import com.model.User;
 import com.service.productservice;
 
 
@@ -54,13 +56,14 @@ public class admin {
        	{   service.addProduct(p);
        	System.out.println(s);
        MultipartFile file=p.getImage();
-       String originalfile=file.getOriginalFilename();
+     //  String originalfile=file.getOriginalFilename();
        	String fileloc=s.getServletContext().getRealPath("/resource/");
        	System.out.println(fileloc);
       String filename=fileloc+"\\"+p.getId()+".jpg";
       System.out.println(filename);
-      byte b[]=originalfile.getBytes();
+      
       try{
+    	  byte b[]=file.getBytes();
      FileOutputStream fos=new FileOutputStream(filename);
      fos.write(b);
 		fos.close();
@@ -105,5 +108,14 @@ public class admin {
 	     System.out.println("id remove is"+id);
 	       return "redirect:/admin";
 	   }
+	 
+	 @RequestMapping("/contact")
+	  public ModelAndView contact()
+	  {
+		 User u=new User();
+		  ModelAndView model=new ModelAndView("contact");
+		  model.addObject("user",u);
+		  return model;
+	  }
 	
 }

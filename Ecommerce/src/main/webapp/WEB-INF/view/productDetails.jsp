@@ -1,5 +1,5 @@
-<%@include file="Header.jsp" %>
 
+<%@include file="Header.jsp" %>
  <br><br>
 <br><br>
 <div class="container" id="product-section">
@@ -7,7 +7,7 @@
 
   <div class="row">
    <div class="col-md-6">
-    <img src="resource/images/${product.id}.jpg" class="image-responsive" height="400" width="400"/>
+    <img src="resource/${product.id}.jpg" class="image-responsive" height="400" width="400"/>
   
    </div>
    <div class="col-md-6">
@@ -64,10 +64,12 @@
  
  </div>
 
- <div class="col-md-9">
+ <!-- <div class="col-md-9">
   <button class="btn btn-lg btn-brand btn-full-width">
    Add to Cart
-  </button>
+   
+  </button> -->
+  <a href="${request.getContextPath()}/Ecommerce/order">add to cart</a>
  </div>
 </div><!-- end row -->
 
@@ -100,7 +102,7 @@
 </div>
 </div>
 </div>
-<%-- <img src="resources/images/${product.id}.jpg" height="150" width="150"/>
+<%-- <img src="resource/images/${product.id}.jpg" height="150" width="150"/>
 
 ${p.id}--%>
 

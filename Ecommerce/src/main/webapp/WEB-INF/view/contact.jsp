@@ -9,7 +9,7 @@
   
   
 
-  <form role="form" action="" method="post" >
+  <form role="form" action="contact" method="post" commandName="contact" >
    
       <div class="form-group">
         <label for="InputName">Your Name</label>

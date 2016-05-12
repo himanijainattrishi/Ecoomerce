@@ -1,4 +1,4 @@
-<%@include file="WEB-INF/view/Header.jsp"%>
+<%@include file="Header.jsp"%>
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="2000">
   <!-- Indicators -->
   <ol class="carousel-indicators">
