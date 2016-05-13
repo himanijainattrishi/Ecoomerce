@@ -18,12 +18,15 @@
 <title>Insert title here</title>
 </head>
 <body>--%>
-<%@include file="Header.jsp" %>
 
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@include file="Header.jsp" %>
 <div class="container">
 <div class="row">
-<div class="col-sm-4"></div>
-<div class="col-sm-8">
+<div class="col-sm-2"></div>
+<div class="col-sm-10">
 
 <h1>
 
@@ -52,40 +55,55 @@
                 <spring:message text="Name"/>
             </form:label>
         </td>
-        <td>
-            <form:input path="name" /><form:errors path="name" cssStyle="color:#00ff00;"/>
-        </td> 
+        <td> <form:input path="name" /></td>
+            <td><form:errors path="name" cssStyle="color:#00ff00;"/></td>
+      
     </tr>
     <tr>
-        <td>
+     <td>
             <form:label path="brand">
                 <spring:message text="brand"/>
             </form:label>
         </td>
-        <td>
-            <form:input path="brand" />
-        </td> 
-    </tr>
+    <td>
+        <form:select path="brand">
+		<form:option value="" label="--- Select ---" />
+		<form:option value="Lakme">Lakme</form:option>  
+                <form:option value="Mac">Mac</form:option>  
+                <form:option value="Loreal">Loreal's</form:option>  
+                <form:option value="Color bar">Zara</form:option>  
+                </form:select> <td>
+
+        <td><form:errors path="brand" cssStyle="color:#00ff00;"/></td>
     <tr>
         <td>
             <form:label path="price">
-                <spring:message text="price"/>
+                <spring:message text="Price"/>
             </form:label>
         </td>
         <td>
             <form:input path="price" />
         </td>
+         <td><form:errors path="price" cssStyle="color:#00ff00;"/></td>
     </tr>
-   
- <%--   </tr>--%>
+    
      <tr>
         <td>
             <form:label path="color">
                 <spring:message text="color"/>
-            </form:label>
+            </form:label></td>
+      <td>
+        <form:select path="color">
+		<form:option value="" label="--- Select ---" />
+		<form:option value="Red">Red</form:option>  
+        <form:option value="Sea Green">Sea Green</form:option>  
+        <form:option value="Black">Black</form:option>  
+        <form:option value="Pink">Pink</form:option>
+        <form:option value="Skin">Skin</form:option>  
+        <form:option value="White">White</form:option>    
+        </form:select> 
         </td>
-        <td>
-            <form:input path="color" />
+          <td><form:errors path="color" cssStyle="color:#00ff00;"/>	
         </td>
     </tr>
     
@@ -97,7 +115,14 @@
             </form:label>
         </td>
         <td>
-            <form:input path="categ" />
+        <form:select path="categ">
+		<form:option value="" label="--- Select ---" />
+		<form:option value="Face">Face</form:option>  
+        <form:option value="Eye">Eye</form:option>  
+        <form:option value="Lips">Lips</form:option>  
+       </form:select> 
+        </td>
+          <td><form:errors path="categ" cssStyle="color:#00ff00;"/>	
         </td>
     </tr>
     
@@ -110,7 +135,8 @@
         <td>
             <form:input path="desc" />
         </td>
-        
+         <td><form:errors path="desc" cssStyle="color:#00ff00;"/>	
+        </td>
     </tr>
      <tr>
         <td>
@@ -120,7 +146,7 @@
         </td>
         <td>
             <form:input type="file" path="image" />
-        </td>
+        </td><td></td>
         
     </tr>
     
@@ -150,7 +176,8 @@
 
 <c:if test="${!empty listproducts}"> 
 <div class="table-responsive"> 
-    <table class="table table-bordered">
+   <!--  <table class="table table-bordered"> -->
+  <table class="table table-bordered">
    <%--  <table class="tg">--%>
     <thead>
     <tr>
@@ -193,7 +220,9 @@
  </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
  <script src="resource/bootstrap/js/bootstrap.min.js"></script>
-</body>
+<!-- </body>
 
   
-</html>
+  
+  
+</html> -->

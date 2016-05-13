@@ -57,7 +57,7 @@ public class admin {
        	System.out.println(s);
        MultipartFile file=p.getImage();
      //  String originalfile=file.getOriginalFilename();
-       	String fileloc=s.getServletContext().getRealPath("/resource/");
+       	String fileloc=s.getServletContext().getRealPath("/resources/images/");
        	System.out.println(fileloc);
       String filename=fileloc+"\\"+p.getId()+".jpg";
       System.out.println(filename);

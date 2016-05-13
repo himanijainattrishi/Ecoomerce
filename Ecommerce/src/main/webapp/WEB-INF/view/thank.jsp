@@ -1,4 +1,4 @@
-<%@taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
+<%-- <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@page isELIgnored="false" %>
@@ -33,4 +33,54 @@
 			</fieldset>
 		</div>
 	</body>
-</html>
+</html> --%>
+
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf"%>
+	
+	 <%@include file="Header.jsp" %>
+	 <div class="container">
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<sf:form modelAttribute="product" method="post">
+
+
+				
+					<div class="row">
+						<div class="col-md-4"></div>
+						<div class="col-md-4">THANK YOU  </div>
+						<div class="col-md-4">
+							<input class="btn btn-info" name="_eventId_submit" type="submit"
+								value="BACK TO HOME PAGE" />
+						</div>
+					</div>
+					<br />
+
+				</sf:form>
+
+			</div>
+		</div>
+		
+		 
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

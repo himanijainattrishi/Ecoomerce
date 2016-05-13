@@ -1,6 +1,6 @@
  <%@include file="Header.jsp"%>
  
-<div align="center">
+ <div align="center">
         <form:form action="useradd" method="post" commandName="user">
             <table border="0">
                 <tr>
@@ -41,6 +41,8 @@
       
     </div>
   
- 
   
+  
+  
+ 
  

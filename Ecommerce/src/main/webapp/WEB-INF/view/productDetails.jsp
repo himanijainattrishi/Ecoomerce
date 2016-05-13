@@ -1,29 +1,31 @@
-
 <%@include file="Header.jsp" %>
- <br><br>
+ 
+<br><br>
 <br><br>
 <div class="container" id="product-section">
 
 
   <div class="row">
-   <div class="col-md-6">
-    <img src="resource/${product.id}.jpg" class="image-responsive" height="400" width="400"/>
-  
+   <div class="col-md-5">
+    <img src="resources/images/${product.id}.jpg" class="image-responsive" height="300" width="300"/>
+   ${p.id}
    </div>
-   <div class="col-md-6">
+   <div class="col-md-7">
    <div class="row">
    <div class="col-md-12">
-   <h1>${p.name}</h1>
+   <h1>${product.name}</h1>
    </div>
    </div>
    
    
    <div class="row">
  <div class="col-md-12">
-  <span class="label label-primary">Vintage</span>
-  <span class="monospaced">No. 1960140180</span>
+  <span class="label label-primary">Color</span>
+  <span class="monospaced">${product.color}</span>
  </div>
 </div>
+  
+
 
 
 <div class="row">
@@ -64,13 +66,11 @@
  
  </div>
 
- <!-- <div class="col-md-9">
-  <button class="btn btn-lg btn-brand btn-full-width">
+ <div class="col-md-9">
+  <!-- <button class="btn btn-lg btn-brand btn-full-width">
    Add to Cart
-   
-  </button> -->
-  <a href="${request.getContextPath()}/Ecommerce/order">add to cart</a>
- </div>
+  </button>
+  -->   <a href="${session.getContextPath()}/Ecommerce/order">add to cart</a></div>
 </div><!-- end row -->
 
 <div class="row">
@@ -87,7 +87,7 @@
 
 <div class="row">
  <div class="col-md-12 top-10">
-  <p>To order by telephone, <a href="tel:18005551212">please call 1-800-555-1212</a></p>
+  <p>To order by telephone,please call 1-800-555-1212</p>
  </div>
 </div>
 
@@ -102,8 +102,8 @@
 </div>
 </div>
 </div>
-<%-- <img src="resource/images/${product.id}.jpg" height="150" width="150"/>
+<%-- <img src="resources/images/${p.id}.jpg" height="150" width="150"/>
 
-${p.id}--%>
+${p.id}--%></body>
+</html>
 
-<%@include file="Footer.jsp" %>​

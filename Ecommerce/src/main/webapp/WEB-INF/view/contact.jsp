@@ -5,11 +5,22 @@
     <div class="col-sm-12">
      <img src="resource/images/customersupport.jpg">
     </div>
+    <div class="row">
+    <div class="col"></div>
+     <div class="col-lg-5 col-md-push-1">
+    <address>
+    <h3>Office Location</h3>
+    <p class="lead">
+NIIT LTD<br>
+      Phone: XXX-XXX-XXXX<br>
+      Fax: XXX-XXX-YYYY</p>
+    </address>
   </div>
+  </div></div>
   
   
 
-  <form role="form" action="contact" method="post" commandName="contact" >
+ <!--  <form role="form" action="contact" method="post" commandName="contact" >
    
       <div class="form-group">
         <label for="InputName">Your Name</label>
@@ -44,7 +55,7 @@ NIIT LTD<br>
       Fax: XXX-XXX-YYYY</p>
     </address>
   </div>
-</div>
+</div> -->
 
 </div>
   

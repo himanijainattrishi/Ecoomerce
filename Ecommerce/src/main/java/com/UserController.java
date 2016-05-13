@@ -27,7 +27,7 @@ public class UserController {
 	  public ModelAndView HomePage()
 	  {
 		 
-		  ModelAndView model=new ModelAndView("root");
+		  ModelAndView model=new ModelAndView("index");
 		  return model;
 	  }
 	 @RequestMapping("/index")
@@ -43,6 +43,13 @@ public class UserController {
 	  {
 		 
 		  ModelAndView model=new ModelAndView("login");
+		  return model;
+	  }
+	 @RequestMapping("/story")
+	  public ModelAndView story()
+	  {
+		 
+		  ModelAndView model=new ModelAndView("story");
 		  return model;
 	  }
 	
@@ -71,7 +78,7 @@ public class UserController {
           return "redirect:/memberShip";
     }
 	Product product;
-	@RequestMapping("/Product/productDetails")
+	@RequestMapping("/productDetails")
 	  public ModelAndView productdetails1(@ModelAttribute("product") Product product)
 	  {
 		  this.product=product;
@@ -81,24 +88,16 @@ public class UserController {
 	  }
 	
 	
-	@RequestMapping("/page1")
+	@RequestMapping("/product1")
 	  public ModelAndView page1()
 	  {
 		  
-		  ModelAndView model=new ModelAndView("page1");
+		  ModelAndView model=new ModelAndView("product1");
 		
 		  return model;
 	  }
 	
-	
-	@RequestMapping("/face")
-	  public ModelAndView face()
-	  {
-		  
-		  ModelAndView model=new ModelAndView("face");
-		  return model;
-	  }
-	@RequestMapping("/Product/{pname}")
+	@RequestMapping("/product/{pname}")
 	public ModelAndView Product_Method2(@PathVariable("pname") String name)
 	{
 	              
